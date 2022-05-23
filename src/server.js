@@ -9,7 +9,7 @@ const mongodb = `mongodb+srv://${username}:${password}@cluster0.fotmt.mongodb.ne
 const init = async () => {
   const server = Hapi.server({
     port: process.env.PORT || 3000,
-    host: 'localhost' || '0.0.0.0',
+    host: '0.0.0.0',
     routes: {
       cors: {
         origin: ['*'],
