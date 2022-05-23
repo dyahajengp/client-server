@@ -1,79 +1,44 @@
-const {nanoid} = require('nanoid');
-const clients = require('./client');
+const DataSchema = require('./models/dataSchema');
 
-const addClientHandler = (request, h) => {
-  const {
-    weightCurrent, height, gender, allergy, age, activities, weightGoal,
-  } = request.payload;
+const addClientHandler = async (request, h) => {
+  try {
+    const dataClient = new DataSchema(request.payload);
+    const dataSave = await dataClient.save();
 
-  const id = nanoid(16);
-  const createdAt = new Date().toISOString();
-  const updatedAt = createdAt;
-
-  const newClient = {
-    weightCurrent,
-    height,
-    gender,
-    allergy,
-    age,
-    activities,
-    weightGoal,
-    id,
-    createdAt,
-    updatedAt,
-  };
-
-  clients.push(newClient);
-
-  const isSuccess = clients.filter((client) => client.id === id).length > 0;
-
-  if (isSuccess) {
     const response = h.response({
       status: 'success',
       message: 'Data berhasil ditambahkan',
       data: {
-        clientId: id,
+        dataSave,
       },
     });
     response.code(201);
     return response;
+  } catch (error) {
+    h.response(error).code(500).send({
+      message: error.message || 'Data gagal ditambahkan',
+    });
   }
-
-  const response = h.response({
-    status: 'fail',
-    message: 'Data gagal ditambahkan',
-  });
-  response.code(500);
-  return response;
 };
 
-const getAllClientHandler = () => ({
-  status: 'success',
-  data: {
-    clients,
-  },
-});
-
-const getClientByIdHandler = (request, h) => {
-  const {id} = request.params;
-
-  const client = clients.filter((n) => n.id === id)[0];
-
-  if (client !== undefined) {
-    return {
-      status: 'success',
-      data: {
-        clients,
-      },
-    };
+const getAllClientHandler = async (request, h) => {
+  try {
+    const datasSave = await DataSchema.find();
+    return h.response(datasSave);
+  } catch (error) {
+    return h.response(error).code(500);
   }
+};
 
-  const response = h.response({
-    status: 'fail',
-    message: 'Data tidak ditemukan',
-  });
-  response.code(404);
-  return response;
+const getClientByIdHandler = async (request, h) => {
+  try {
+    const dataSave = await DataSchema.findById(request.params.id);
+    return h.response(dataSave);
+  } catch (error) {
+    h.response(error).code(404).send({
+      message: error.message || 'Data tidak ditemukan',
+    });
+  }
 };
 
 module.exports = {addClientHandler, getAllClientHandler, getClientByIdHandler};
