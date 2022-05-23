@@ -2,15 +2,13 @@ const Hapi = require('@hapi/hapi');
 const mongoose = require('mongoose');
 const routes = require('./routes');
 
-const Port = process.env.PORT || 3000;
-
 const username = encodeURIComponent('ajeng');
 const password = encodeURIComponent('ajeng');
 const mongodb = `mongodb+srv://${username}:${password}@cluster0.fotmt.mongodb.net/foodinApp?retryWrites=true&w=majority`;
 
 const init = async () => {
   const server = Hapi.server({
-    port: Port,
+    port: process.env.PORT || 3000,
     host: 'localhost',
     routes: {
       cors: {
