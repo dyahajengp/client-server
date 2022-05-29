@@ -1,25 +1,53 @@
 const {
-  addClientHandler,
-  getAllClientHandler,
-  getClientByIdHandler,
-} = require('./handler');
+  getCaloryByIdHandler,
+  getAllActivityHandler,
+  // addActivityByIdHandler,
+  getActivityByIdHandler,
+  getFoodByIdHandler,
+} = require('./handler/handler');
+
+const {
+  regisClientHandler,
+  loginClientHandler,
+} = require('./handler/auth');
 
 const routes = [
   {
     method: 'POST',
-    path: '/client',
-    handler: addClientHandler,
+    path: '/regis',
+    handler: regisClientHandler,
+  },
+  {
+    method: 'POST',
+    path: '/login',
+    handler: loginClientHandler,
   },
   {
     method: 'GET',
-    path: '/client',
-    handler: getAllClientHandler,
+    path: '/home/{id}',
+    handler: getCaloryByIdHandler,
   },
   {
     method: 'GET',
-    path: '/client/{id}',
-    handler: getClientByIdHandler,
+    path: '/activities',
+    handler: getAllActivityHandler,
   },
+  // {
+  //   method: 'POST',
+  //   path: '/activities/{id}',
+  //   handler: addActivityByIdHandler,
+  // },
+  {
+    method: 'GET',
+    path: '/activities/{id}',
+    handler: getActivityByIdHandler,
+  },
+  {
+    method: 'GET',
+    path: '/foods/{id}',
+    handler: getFoodByIdHandler,
+  },
+
 ];
 
 module.exports = routes;
