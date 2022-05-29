@@ -1,10 +1,7 @@
 const Hapi = require('@hapi/hapi');
 const mongoose = require('mongoose');
 const routes = require('./routes');
-
-const username = encodeURIComponent('ajeng');
-const password = encodeURIComponent('ajeng');
-const mongodb = `mongodb+srv://${username}:${password}@cluster0.fotmt.mongodb.net/foodinApp?retryWrites=true&w=majority`;
+require('dotenv').config();
 
 const init = async () => {
   const server = Hapi.server({
@@ -17,13 +14,26 @@ const init = async () => {
     },
   });
 
-  mongoose.connect(mongodb, {useNewUrlParser: true})
+  const db = process.env.MONGO_URL;
+  mongoose.connect(db, {
+    useNewUrlParser: true, useUnifiedTopology: true,
+  })
       .then(() => {
         console.log('connected to mongodb atlas');
       }).catch((error) => {
         console.log('Something wrong happened', error);
       });
 
+  // server.register([{
+  //   register: require('hapi-auth-jwt'),
+  // }], function(err) {
+  //   server.auth.strategy('token', 'jwt', {
+  //     validateFunc: validate,
+  //     key: privateKey,
+  //   });
+
+  //   server.route(routes);
+  // });
   server.route(routes);
 
   await server.start();

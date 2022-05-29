@@ -1,4 +1,5 @@
 const {Schema, model} = require('mongoose');
+// const Activities = require('./dataset');
 
 const taskSchema = new Schema(
     {
@@ -12,16 +13,24 @@ const taskSchema = new Schema(
       gender: String,
       allergy: String,
       age: Number,
-      activities: String,
+      activities: [
+        {activityName: String,
+          duration: Number},
+      ],
       weightGoal: Number,
       calories: Number,
+      foodLists: [
+        {food: String,
+          vegetable: String,
+          fruit: String},
+      ],
     },
     {timestamps: true},
 );
 
 taskSchema.method('toJSON', function() {
-  const {_id, ...object} = this.toObject();
-  object.id = _id;
+  const {...object} = this.toObject();
+  // object.id = _id;
   return object;
 });
 
