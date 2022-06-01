@@ -32,6 +32,11 @@ const regisClientHandler = async (request, h) => {
   const user = new UserSchema({
     email: request.payload.email,
     password: hashPassword,
+    weightCurrent: request.payload.weightCurrent,
+    height: request.payload.height,
+    gender: request.payload.gender,
+    age: request.payload.age,
+    goals: request.payload.goals,
   });
 
   try {
@@ -78,7 +83,11 @@ const loginClientHandler = async (request, h) => {
 
   const jwtoken = jwt.sign({_id: user._id}, process.env.PRIVATE_KEY);
   const response = h.response({
-    token: jwtoken,
+    status: 'success',
+    message: 'login success',
+    data: {
+      token: jwtoken,
+    },
   });
   return response;
 };

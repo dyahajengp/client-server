@@ -13,6 +13,33 @@ const userSchema = new Schema(
         max: 6,
         max: 1024,
       },
+      weightCurrent: Number,
+      height: Number,
+      gender: String,
+      age: Number,
+      goals: String,
+      activities: [
+        {activityName: String,
+          duration: Number},
+      ],
+      totalCalories: Number,
+      foodLists: [
+        {breakfast: {
+          food: String,
+          vegetable: String,
+          fruit: String,
+        }},
+        {lunch: {
+          food: String,
+          vegetable: String,
+          fruit: String,
+        }},
+        {dinner: {
+          food: String,
+          vegetable: String,
+          fruit: String,
+        }},
+      ],
     },
     {timestamps: true},
 );

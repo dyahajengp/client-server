@@ -1,24 +1,13 @@
 const {Schema, model} = require('mongoose');
-// const Activities = require('./dataset');
 
-const taskSchema = new Schema(
+const dataSchema = new Schema(
     {
-      //   name: {
-      //     type: String,
-      //     required: true,
-      //   },
-      //   description: String,
-      weightCurrent: Number,
-      height: Number,
-      gender: String,
-      allergy: String,
-      age: Number,
+      bmr: Number,
       activities: [
         {activityName: String,
           duration: Number},
       ],
-      weightGoal: Number,
-      calories: Number,
+      totalCalories: Number,
       foodLists: [
         {food: String,
           vegetable: String,
@@ -28,10 +17,10 @@ const taskSchema = new Schema(
     {timestamps: true},
 );
 
-taskSchema.method('toJSON', function() {
+dataSchema.method('toJSON', function() {
   const {...object} = this.toObject();
   // object.id = _id;
   return object;
 });
 
-module.exports = model('dataSchema', taskSchema);
+module.exports = model('dataSchema', dataSchema);
