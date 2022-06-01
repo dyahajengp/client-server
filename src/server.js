@@ -1,7 +1,16 @@
 const Hapi = require('@hapi/hapi');
-const mongoose = require('mongoose');
 const routes = require('./routes');
+const mongoose = require('mongoose');
+const userSchema = require('./models/userSchema');
 require('dotenv').config();
+
+const validate = async function(decoded, request, h) {
+  if (decoded._id==userSchema._id) {
+    return {isValid: false};
+  } else {
+    return {isValid: true};
+  }
+};
 
 const init = async () => {
   const server = Hapi.server({
@@ -15,7 +24,7 @@ const init = async () => {
   });
 
   const db = process.env.MONGO_URL;
-  mongoose.connect(db, {
+  await mongoose.connect(db, {
     useNewUrlParser: true, useUnifiedTopology: true,
   })
       .then(() => {
@@ -24,20 +33,21 @@ const init = async () => {
         console.log('Something wrong happened', error);
       });
 
-  // server.register([{
-  //   register: require('hapi-auth-jwt'),
-  // }], function(err) {
-  //   server.auth.strategy('token', 'jwt', {
-  //     validateFunc: validate,
-  //     key: privateKey,
-  //   });
+  await server.register(require('hapi-auth-jwt2'));
+  server.auth.strategy('jwt', 'jwt', {
+    key: process.env.PRIVATE_KEY,
+    validate: validate,
+  });
 
-  //   server.route(routes);
-  // });
+  server.auth.default('jwt');
   server.route(routes);
-
   await server.start();
-  console.log(`Server url :  ${server.info.uri}`);
+  return server;
 };
 
-init();
+init().then((server) => {
+  console.log('Server running at:', server.info.uri);
+})
+    .catch((err) => {
+      console.log(err);
+    });
