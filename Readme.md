@@ -95,7 +95,10 @@
 {
     "status" : "string",
     "data" : {
-        "Activities": "array"
+        "Activities": [{
+            "activityName" : "string",
+            "id" : "string",
+        }]
     }
 }
 ```
