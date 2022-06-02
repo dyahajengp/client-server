@@ -3,6 +3,7 @@ const {
   getAllActivityHandler,
   addActivityByIdHandler,
   getFoodByIdHandler,
+  addActivityListsHandler,
 } = require('./handler/handler');
 
 const {
@@ -46,6 +47,12 @@ const routes = [
     path: '/foods/{id}',
     config: {auth: 'jwt'},
     handler: getFoodByIdHandler,
+  },
+  {
+    method: 'POST',
+    path: '/activities/{id}',
+    config: {auth: false},
+    handler: addActivityListsHandler,
   },
 ];
 

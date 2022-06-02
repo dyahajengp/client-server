@@ -1,14 +1,15 @@
 const UserSchema = require('../models/userSchema');
 const dataset = require('../models/dataset');
+const DataSchema = require('../models/dataSchema');
+const dataSchema = require('../models/dataSchema');
 
 const getAllActivityHandler = async (request, h) => {
   try {
-    console.log(dataset);
-    const activityList = await dataset.Activities;
+    const activityList = await dataSchema.findById('6298c29c5817e187d11f28df');
     const response = h.response({
       status: 'success',
       data: {
-        Activities: activityList,
+        Activities: activityList.activities,
       },
     });
     return response;
@@ -37,7 +38,7 @@ const addActivityByIdHandler = async (request, h) => {
 
     const response = h.response({
       status: 'success',
-      message: 'Data berhasil ditambahkan',
+      message: 'Inserting data success',
       data: {
         activities,
       },
@@ -47,7 +48,7 @@ const addActivityByIdHandler = async (request, h) => {
   } catch (error) {
     const response = h.response({
       status: 'error',
-      message: error.message || 'Data gagal ditambahkan',
+      message: error.message || 'Inserting data failed',
     });
     response.code(500);
     return response;
@@ -102,10 +103,49 @@ const getFoodByIdHandler = async (request, h) => {
   }
 };
 
+const addActivityListsHandler = async (request, h) => {
+  const totalActivities = dataset.Activities.length;
+
+  const activities = [];
+  for (let i = 0; i < totalActivities; i++) {
+    activities.push({
+      activityName: dataset.Activities[i],
+    });
+  }
+  console.log(activities);
+
+  try {
+    await DataSchema.updateOne(
+        {_id: request.params.id},
+        {
+          $set: {activities: activities},
+        },
+    );
+    const response = h.response({
+      status: 'success',
+      message: 'successfully inserting data',
+      data: {
+        activities,
+      },
+    });
+    // console.log(Activities);
+    response.code(201);
+    return response;
+  } catch (error) {
+    const response = h.response({
+      status: 'error',
+      message: error.message || 'Failed to insert data',
+    });
+    response.code(500);
+    return response;
+  }
+};
+
 
 module.exports = {
   getCaloryByIdHandler,
   getAllActivityHandler,
   addActivityByIdHandler,
   getFoodByIdHandler,
+  addActivityListsHandler,
 };
