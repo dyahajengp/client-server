@@ -74,6 +74,7 @@
 - Endpoint : `/home/{id}`
 - Header : 
     - Accept: application/json
+    - Authorization: bearer <token>
 - Response :
 ```json
 {
@@ -105,6 +106,7 @@
 - Header : 
     - Content-Type: application/json
     - Accept: application/json
+    - Authorization: bearer <token>
 - Body :
 
 ```json
@@ -132,6 +134,7 @@
 - Endpoint : `/foods/{id}`
 - Header : 
     - Accept: application/json
+    - Authorization: bearer <token>
 - Response :
 
 ```json
