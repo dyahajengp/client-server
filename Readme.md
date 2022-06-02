@@ -87,7 +87,7 @@
 
 ## Display List Activities :
 - Method : GET
-- Endpoint : `/home/activities`
+- Endpoint : `/activities`
 - Header : 
     - Accept: application/json
 - Response :
