@@ -64,6 +64,7 @@
     "status" : "string",
     "message" : "string",
     "data" : {
+        "id" : "string",
         "token" : "string"
     }
 }
@@ -94,7 +95,10 @@
 {
     "status" : "string",
     "data" : {
-        "Activities": "array"
+        "Activities": [{
+            "activityName" : "string",
+            "id" : "string",
+        }]
     }
 }
 ```
