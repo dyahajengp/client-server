@@ -81,11 +81,14 @@ const loginClientHandler = async (request, h) => {
     return response;
   }
 
+  const id = await user._id;
+
   const jwtoken = jwt.sign({_id: user._id}, process.env.PRIVATE_KEY);
   const response = h.response({
     status: 'success',
     message: 'login success',
     data: {
+      id: id,
       token: jwtoken,
     },
   });
