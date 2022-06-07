@@ -32,6 +32,7 @@ const regisClientHandler = async (request, h) => {
   const user = new UserSchema({
     email: request.payload.email,
     password: hashPassword,
+    name: request.payload.name,
     weightCurrent: request.payload.weightCurrent,
     height: request.payload.height,
     gender: request.payload.gender,

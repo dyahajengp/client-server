@@ -13,6 +13,7 @@ const userSchema = new Schema(
         max: 6,
         max: 1024,
       },
+      name: String,
       weightCurrent: Number,
       height: Number,
       gender: String,

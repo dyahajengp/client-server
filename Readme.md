@@ -106,7 +106,7 @@
 
 ## Adding Activities :
 - Method : POST
-- Endpoint : `/home/activities/{id_user}`
+- Endpoint : `/home/activities/{id}`
 - Header : 
     - Content-Type: application/json
     - Accept: application/json
