@@ -30,6 +30,7 @@
         "saveUser" : {
             "email" : "string, unique",
             "password" : "string",
+            "name" : "string",
             "weightCurrent" : "int",
             "height" : "int",
             "gender" : "string",
