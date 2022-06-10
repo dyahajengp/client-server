@@ -23,7 +23,8 @@
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.4",
-    "nanoid": "^3.3.4"
+    "nanoid": "^3.3.4",
+    "python-shell": "^3.0.1"
   },
   "engines": {
     "node": "v14.17.0"

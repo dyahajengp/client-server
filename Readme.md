@@ -12,6 +12,7 @@
 {
     "email" : "string, unique",
     "password" : "string",
+    "name" : "string",
     "weightCurrent" : "int",
     "height" : "int",
     "gender" : "string",
@@ -30,6 +31,7 @@
         "saveUser" : {
             "email" : "string, unique",
             "password" : "string",
+            "name" : "string",
             "weightCurrent" : "int",
             "height" : "int",
             "gender" : "string",
@@ -75,6 +77,7 @@
 - Endpoint : `/home/{id}`
 - Header : 
     - Accept: application/json
+    - Authorization: bearer <token>
 - Response :
 ```json
 {
@@ -87,7 +90,7 @@
 
 ## Display List Activities :
 - Method : GET
-- Endpoint : `/home/activities`
+- Endpoint : `/activities`
 - Header : 
     - Accept: application/json
 - Response :
@@ -109,6 +112,7 @@
 - Header : 
     - Content-Type: application/json
     - Accept: application/json
+    - Authorization: bearer <token>
 - Body :
 
 ```json
@@ -136,27 +140,81 @@
 - Endpoint : `/foods/{id}`
 - Header : 
     - Accept: application/json
+    - Authorization: bearer <token>
 - Response :
 
 ```json
 {
-    "foodLists" : [
-        {"breakfast" : {
-            "food" : "string",
-            "vegetable" : "string",
-            "fruit" : "string",
-        }},
-        {"lunch" : {
-            "food" : "string",
-            "vegetable" : "string",
-            "fruit" : "string",
-        }},
-        {"dinner" : {
-            "food" : "string",
-            "vegetable" : "string",
-            "fruit" : "string",
-        }}
-    ]
+    "status" : "string",
+    "data"   :   "foodLists" : [
+                   {
+                      "breakfast" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "brunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "lunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "dinner" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      }
+                   },
+                   {
+                      "breakfast" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "brunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "lunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "dinner" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      }
+                   },
+                   {
+                      "breakfast" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "brunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "lunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "dinner" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      }
+                   },
+                    
+                ]
 }
 
 ```

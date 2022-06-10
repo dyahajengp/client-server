@@ -4,6 +4,7 @@ const {
   addActivityByIdHandler,
   getFoodByIdHandler,
   addActivityListsHandler,
+  testHandler,
 } = require('./handler/handler');
 
 const {
@@ -53,6 +54,12 @@ const routes = [
     path: '/activities/{id}',
     config: {auth: false},
     handler: addActivityListsHandler,
+  },
+  {
+    method: 'GET',
+    path: '/test',
+    config: {auth: false},
+    handler: testHandler,
   },
 ];
 

@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserSchema = require('../models/userSchema');
 const {validateRegistration} = require('../config/validation');
+const {PythonShell} = require('python-shell');
 
 const regisClientHandler = async (request, h) => {
   const {error} = validateRegistration(request.payload);
@@ -28,6 +29,7 @@ const regisClientHandler = async (request, h) => {
   // encrypt password
   const generator = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(request.payload.password, generator);
+  const pyshell = new PythonShell('./src/scripts/test.py', {mode: 'text'});
 
   const user = new UserSchema({
     email: request.payload.email,
@@ -40,13 +42,46 @@ const regisClientHandler = async (request, h) => {
     goals: request.payload.goals,
   });
 
+  let message = '';
+
   try {
     const saveUser = await user.save();
+
+    const myPromise = new Promise((reject, resolve) => {
+      const data = saveUser;
+      const dataString = JSON.stringify(data);
+      pyshell.send(dataString);
+      pyshell.on('message', function(err, message) {
+        if (err) reject(err);
+        else {
+          console.log(message);
+          resolve(message);
+        }
+      });
+      pyshell.end(function(err) {
+        if (err) {
+          console.log(err);
+        };
+      });
+    });
+
+    message = await myPromise;
+    console.log(message);
+
+    await UserSchema.updateOne(
+        {email: saveUser.email},
+        {
+          $set: {totalCalories: message},
+          $currentDate: {lastModified: true},
+        },
+    );
+
     const response = h.response({
       status: 'success',
       message: 'successfully created account',
       data: {
-        saveUser,
+        saveUser: saveUser,
+        bmr: message,
       },
     });
     response.code(201);
