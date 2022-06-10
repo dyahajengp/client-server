@@ -147,26 +147,73 @@
 {
     "status" : "string",
     "data"   :   "foodLists" : [
-                    {"breakfast" : {
+                   {
+                      "breakfast" : {
                         "food" : "string",
                         "vegetable" : "string",
                         "fruit" : "string",
-                    }},
-                    {"brunch" : {
+                      },
+                      "brunch" : {
                         "food" : "string",
                         "vegetable" : "string",
                         "fruit" : "string",
-                    }},
-                    {"lunch" : {
+                      },
+                      "lunch" : {
                         "food" : "string",
                         "vegetable" : "string",
                         "fruit" : "string",
-                    }},
-                    {"dinner" : {
+                      },
+                      "dinner" : {
                         "food" : "string",
                         "vegetable" : "string",
                         "fruit" : "string",
-                    }}
+                      }
+                   },
+                   {
+                      "breakfast" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "brunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "lunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "dinner" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      }
+                   },
+                   {
+                      "breakfast" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "brunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "lunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      },
+                      "dinner" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                      }
+                   },
+                    
                 ]
 }
 
