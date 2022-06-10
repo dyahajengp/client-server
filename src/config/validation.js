@@ -8,6 +8,8 @@ const validateRegistration = (dataUser) => {
     password: joi.string()
         .min(6)
         .required(),
+    name: joi.string()
+        .required(),
     weightCurrent: joi.number()
         .required(),
     height: joi.number()

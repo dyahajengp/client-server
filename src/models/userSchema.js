@@ -21,7 +21,8 @@ const userSchema = new Schema(
       goals: String,
       activities: [
         {activityName: String,
-          duration: Number},
+          duration: Number,
+          kind: String},
       ],
       totalCalories: Number,
       foodLists: [
