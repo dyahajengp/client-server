@@ -29,7 +29,7 @@ const regisClientHandler = async (request, h) => {
   // encrypt password
   const generator = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(request.payload.password, generator);
-  const pyshell = new PythonShell('./src/scripts/test.py', {mode: 'text'});
+  const pyshell = new PythonShell('./src/scripts/foodinApp.py', {mode: 'text'});
 
   const user = new UserSchema({
     email: request.payload.email,
@@ -54,7 +54,6 @@ const regisClientHandler = async (request, h) => {
       pyshell.on('message', function(err, message) {
         if (err) reject(err);
         else {
-          console.log(message);
           resolve(message);
         }
       });
@@ -66,12 +65,18 @@ const regisClientHandler = async (request, h) => {
     });
 
     message = await myPromise;
-    console.log(message);
+    newMessage = message.replace(/'/g, '"');
+    messageJson = JSON.parse(newMessage);
+    console.log(messageJson.foodLists.foodLists);
+    const foodLists = Object.values(messageJson.foodLists.foodLists);
+    console.log(foodLists);
 
     await UserSchema.updateOne(
         {email: saveUser.email},
         {
-          $set: {totalCalories: message},
+          $set: {
+            totalCalories: messageJson.totalCalories,
+            foodLists: foodLists},
           $currentDate: {lastModified: true},
         },
     );
@@ -80,8 +85,7 @@ const regisClientHandler = async (request, h) => {
       status: 'success',
       message: 'successfully created account',
       data: {
-        saveUser: saveUser,
-        bmr: message,
+        saveUser,
       },
     });
     response.code(201);

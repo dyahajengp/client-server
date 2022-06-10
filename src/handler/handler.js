@@ -26,13 +26,12 @@ const getAllActivityHandler = async (request, h) => {
 
 const addActivityByIdHandler = async (request, h) => {
   // const dataClient = await UserSchema.findById(request.params.id);
-  // const pyshell = new PythonShell('./src/scripts/test.py', {mode: 'json'});
+  const pyshell = new PythonShell('./src/scripts/foodinApp.py', {mode: 'text'});
   const {activities} = request.payload;
-  const message = '';
+  let message = '';
 
   try {
     const newActivities = activRepair(activities);
-
     await UserSchema.updateOne(
         {_id: request.params.id},
         {
@@ -40,41 +39,44 @@ const addActivityByIdHandler = async (request, h) => {
           $currentDate: {lastModified: true},
         },
     );
-    // const dataSave = await UserSchema.findById(request.params.id);
+    const dataSave = await UserSchema.findById(request.params.id);
 
-    // const myPromise = new Promise((reject, resolve) => {
-    //   const dataString = JSON.stringify(dataSave);
-    //   pyshell.send(dataString);
-    //   pyshell.on('message', function(err, message) {
-    //     if (err) reject(err);
-    //     else {
-    //       console.log(message);
-    //       resolve(message);
-    //     }
-    //   });
-    //   pyshell.end(function(err) {
-    //     if (err) {
-    //       console.log(err);
-    //     };
-    //   });
-    // });
+    const myPromise = new Promise((reject, resolve) => {
+      const dataString = JSON.stringify(dataSave);
+      pyshell.send(dataString);
+      pyshell.on('message', function(err, message) {
+        if (err) reject(err);
+        else {
+          resolve(message);
+        }
+      });
+      pyshell.end(function(err) {
+        if (err) {
+          console.log(err);
+        };
+      });
+    });
 
-    // message = await myPromise;
-    // console.log(message);
+    message = await myPromise;
+    newMessage = message.replace(/'/g, '"');
+    messageJson = JSON.parse(newMessage);
+    const foodLists = Object.values(messageJson.foodLists.foodLists);
 
-    // await UserSchema.updateOne(
-    //     {email: saveUser.email},
-    //     {
-    //       $set: {foodLists: message},
-    //       $currentDate: {lastModified: true},
-    //     },
-    // );
+    await UserSchema.updateOne(
+        {email: dataSave.email},
+        {
+          $set: {
+            totalCalories: messageJson.totalCalories,
+            foodLists: foodLists},
+          $currentDate: {lastModified: true},
+        },
+    );
 
     const response = h.response({
       status: 'success',
       message: 'Inserting data success',
       data: {
-        newActivities,
+        activities,
       },
     });
     response.code(201);
@@ -118,7 +120,35 @@ const getFoodByIdHandler = async (request, h) => {
     //   fruit: foodList.fruit,
     // }));
 
-    const displayFood = Object.values(dataSave.foodLists);
+    const foodLists = Object.values(dataSave.foodLists);
+    const displayFood = [];
+
+    for (i=0; i<3; i++) {
+      let breakfast = foodLists[i].breakfast;
+      let brunch = foodLists[i].brunch;
+      let lunch = foodLists[i].lunch;
+      let dinner = foodLists[i].dinner;
+
+      if (typeof(foodLists[i].breakfast) == 'undefined') {
+        breakfast = '';
+      }
+      if (typeof(foodLists[i].brunch) == 'undefined') {
+        brunch = '';
+      }
+      if (typeof(foodLists[i].lunch) == 'undefined') {
+        lunch = '';
+      }
+      if (typeof(foodLists[i].dinner) == 'undefined') {
+        dinner = '';
+      }
+      displayFood.push({
+        breakfast: breakfast,
+        brunch: brunch,
+        lunch: lunch,
+        dinner: dinner,
+      });
+    }
+
     const response = h.response({
       status: 'success',
       data: {
@@ -176,8 +206,7 @@ const addActivityListsHandler = async (request, h) => {
 };
 
 const testHandler = async (request, h) => {
-  const pyshell = new PythonShell('./src/scripts/test.py', {mode: 'text'});
-
+  const pyshell = new PythonShell('./src/scripts/foodinApp.py', {mode: 'text'});
   // await pyshell.on('message', handleMessage);
   // function handleMessage(message) {
   //   console.log(message);
@@ -195,6 +224,17 @@ const testHandler = async (request, h) => {
       gender: 'male',
       age: 26,
       goals: 'gain',
+      activities: [
+        {
+          'activityName': 110,
+          'kind': '',
+          'duration': 0.5,
+        },
+        {
+          'activityName': 2,
+          'kind': 'b',
+          'duration': 2,
+        }],
     };
     const testjson = JSON.stringify(data);
     pyshell.send(testjson);
@@ -202,9 +242,6 @@ const testHandler = async (request, h) => {
     pyshell.on('message', function(err, message) {
       if (err) reject(err);
       else {
-        console.log(message);
-        // a=(message);
-        // console.log(`${a}1`);
         resolve(message);
       }
     });
@@ -216,15 +253,13 @@ const testHandler = async (request, h) => {
   });
 
   message = await myPromise;
-  // messageJson = JSON.parse(message);
-  console.log('AA');
-  console.log(message);
-  // console.log('iyes');
+  newMessage = message.replace(/'/g, '"');
+  messageJson = JSON.parse(newMessage);
 
   const response = h.response({
     status: 'success',
     data: {
-      message,
+      messageJson,
     },
   });
   response.code(201);

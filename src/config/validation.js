@@ -23,6 +23,12 @@ const validateRegistration = (dataUser) => {
     activities: joi.array(),
     totalCalories: joi.number(),
     foodList: joi.array(),
+    // .items({
+    //   breakfast: joi.object(),
+    //   brunch: joi.object(),
+    //   lunch: joi.object(),
+    //   dinner: joi.object(),
+    // }),
   });
   return userSchemas.validate(dataUser);
 };
