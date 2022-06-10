@@ -146,7 +146,7 @@
 ```json
 {
     "status" : "string",
-    "data"   :   "foodLists" : [
+    "data"   : {"foodLists" : [
                    {
                       "breakfast" : {
                         "food" : "string",
@@ -212,9 +212,8 @@
                         "vegetable" : "string",
                         "fruit" : "string",
                       }
-                   },
-                    
+                   },            
                 ]
+            }
 }
-
 ```
