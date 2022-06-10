@@ -30,13 +30,18 @@ const userSchema = new Schema(
           food: String,
           vegetable: String,
           fruit: String,
-        }},
-        {lunch: {
+        },
+        brunch: {
           food: String,
           vegetable: String,
           fruit: String,
-        }},
-        {dinner: {
+        },
+        lunch: {
+          food: String,
+          vegetable: String,
+          fruit: String,
+        },
+        dinner: {
           food: String,
           vegetable: String,
           fruit: String,
