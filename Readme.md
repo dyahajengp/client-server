@@ -145,23 +145,29 @@
 
 ```json
 {
-    "foodLists" : [
-        {"breakfast" : {
-            "food" : "string",
-            "vegetable" : "string",
-            "fruit" : "string",
-        }},
-        {"lunch" : {
-            "food" : "string",
-            "vegetable" : "string",
-            "fruit" : "string",
-        }},
-        {"dinner" : {
-            "food" : "string",
-            "vegetable" : "string",
-            "fruit" : "string",
-        }}
-    ]
+    "status" : "string",
+    data"   :   "foodLists" : [
+                    {"breakfast" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                    }},
+                    {"brunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                    }},
+                    {"lunch" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                    }},
+                    {"dinner" : {
+                        "food" : "string",
+                        "vegetable" : "string",
+                        "fruit" : "string",
+                    }}
+                ]
 }
 
 ```
