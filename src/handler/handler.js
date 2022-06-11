@@ -121,14 +121,6 @@ const getFoodByIdHandler = async (request, h) => {
     // }));
 
     const foodLists = dataSave.foodLists;
-
-    console.log(foodLists[0].breakfast);
-    console.log(typeof(foodLists[0].breakfast));
-    console.log(Object.values(foodLists[0].breakfast));
-    const values = Object.values(foodLists[0].breakfast);
-    console.log(values[0]);
-    console.log(typeof(values[0]));
-
     const displayFood = [];
 
     for (i=0; i<3; i++) {
@@ -168,8 +160,6 @@ const getFoodByIdHandler = async (request, h) => {
         });
       }
     }
-
-    console.log(displayFood);
 
     const response = h.response({
       status: 'success',
