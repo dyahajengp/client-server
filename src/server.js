@@ -23,7 +23,9 @@ const init = async () => {
     },
   });
 
-  const db = process.env.MONGO_URL;
+  const username = encodeURIComponent('ajeng');
+  const password = encodeURIComponent('ajeng');
+  const db = `mongodb+srv://${username}:${password}@cluster0.fotmt.mongodb.net/foodinApp?retryWrites=true&w=majority`;
   await mongoose.connect(db, {
     useNewUrlParser: true, useUnifiedTopology: true,
   })

@@ -120,34 +120,56 @@ const getFoodByIdHandler = async (request, h) => {
     //   fruit: foodList.fruit,
     // }));
 
-    const foodLists = Object.values(dataSave.foodLists);
+    const foodLists = dataSave.foodLists;
+
+    console.log(foodLists[0].breakfast);
+    console.log(typeof(foodLists[0].breakfast));
+    console.log(Object.values(foodLists[0].breakfast));
+    const values = Object.values(foodLists[0].breakfast);
+    console.log(values[0]);
+    console.log(typeof(values[0]));
+
     const displayFood = [];
 
     for (i=0; i<3; i++) {
-      let breakfast = foodLists[i].breakfast;
-      let brunch = foodLists[i].brunch;
-      let lunch = foodLists[i].lunch;
-      let dinner = foodLists[i].dinner;
+      const breakfastVal = typeof(Object.values(foodLists[i].breakfast)[i]);
+      const brunchVal = typeof(Object.values(foodLists[i].brunch)[i]);
+      const lunchVal = typeof(Object.values(foodLists[i].lunch)[i]);
 
-      if (typeof(foodLists[i].breakfast) == 'undefined') {
-        breakfast = '';
+      if (breakfastVal == 'undefined' && lunchVal == 'undefined') {
+        const breakfast = {
+          food: '',
+          vegetables: '',
+          fruit: '',
+        };
+        const lunch = {
+          food: '',
+          vegetables: '',
+          fruit: '',
+        };
+        displayFood.push({
+          breakfast: breakfast,
+          brunch: foodLists[i].brunch,
+          lunch: lunch,
+          dinner: foodLists[i].dinner,
+        });
       }
-      if (typeof(foodLists[i].brunch) == 'undefined') {
-        brunch = '';
+      if (brunchVal == 'undefined') {
+        const brunch = {
+          food: '',
+          vegetables: '',
+          fruit: '',
+        };
+        displayFood.push({
+          breakfast: foodLists[i].breakfast,
+          brunch: brunch,
+          lunch: foodLists[i].lunch,
+          dinner: foodLists[i].dinner,
+        });
       }
-      if (typeof(foodLists[i].lunch) == 'undefined') {
-        lunch = '';
-      }
-      if (typeof(foodLists[i].dinner) == 'undefined') {
-        dinner = '';
-      }
-      displayFood.push({
-        breakfast: breakfast,
-        brunch: brunch,
-        lunch: lunch,
-        dinner: dinner,
-      });
     }
+
+    console.log(displayFood);
 
     const response = h.response({
       status: 'success',
