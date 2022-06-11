@@ -1,5 +1,8 @@
 # API Spec
 
+## Endpoint :
+https://foodin-app-e2sp7mteba-et.a.run.app
+
 ## Create User :
 - Method : POST
 - Endpoint : `/regis`
