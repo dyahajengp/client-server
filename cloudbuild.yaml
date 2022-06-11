@@ -1,5 +1,5 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['buils', '-t', 'gcr.io/cobalt-cider-350808/foodin-repo', '.']
+    args: ['build', '-t', 'gcr.io/cobalt-cider-350808/foodin-repo', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/cobalt-cider-350808/foodin-repo']
