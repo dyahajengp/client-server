@@ -11,5 +11,5 @@ A Capstone project focuses on recommending a person's diet based on their height
 | Mochamad Arya Bima Agfian  |  A7011F1155  |      Android     | Universitas Padjadjaran |
 | Dyah Ajeng Pramudhita      |  C7012J1309  | Cloud Computing  | Universitas Telkom      |
 | Muhammad Zidan Fadhilah    |  C7012J1324  | Cloud Computing  | Universitas Telkom      |
-| Fiqri Septi Fermana (ML)   |  M2184H1790  | Machine Learning | Universitas Andalas     |
+| Fiqri Septi Fermana        |  M2184H1790  | Machine Learning | Universitas Andalas     |
 | Ruth Rebecca Ovelin        |  M7011F1156  | Machine Learning | Universitas Padjadjaran |
