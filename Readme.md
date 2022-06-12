@@ -120,6 +120,8 @@ https://foodin-app-v1-e2sp7mteba-et.a.run.app
 
 ```json
 {
+    "status" : "string",
+    "message" : "string",
     "activities" : [{
         "activityName" : "string",
         "duration" : "int",
