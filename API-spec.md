@@ -1,7 +1,7 @@
 # API Spec
 
 ## Endpoint :
-https://foodin-app-v1-e2sp7mteba-et.a.run.app
+https://foodin-app-3-e2sp7mteba-et.a.run.app
 
 ## Create User :
 - Method : POST
