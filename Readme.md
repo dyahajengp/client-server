@@ -155,66 +155,66 @@ https://foodin-app-v1-e2sp7mteba-et.a.run.app
                    {
                       "breakfast" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       },
                       "brunch" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       },
                       "lunch" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       },
                       "dinner" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       }
                    },
                    {
                       "breakfast" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       },
                       "brunch" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       },
                       "lunch" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       },
                       "dinner" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       }
                    },
                    {
                       "breakfast" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       },
                       "brunch" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       },
                       "lunch" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       },
                       "dinner" : {
                         "food" : "string",
-                        "vegetable" : "string",
+                        "vegetables" : "string",
                         "fruit" : "string",
                       }
                    },            
