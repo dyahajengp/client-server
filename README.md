@@ -1,5 +1,3 @@
-<a href="https://drive.google.com/uc?export=view&id=1F7QyAUmekd88WZKf9snVIaCnYFbisvFK"><img src="https://drive.google.com/uc?export=view&id=1F7QyAUmekd88WZKf9snVIaCnYFbisvFK" style="width: 400px; max-width: 100%;height: auto" title="Click to enlarge picture" />
-
 # Bangkit 2022 Capstone Team (C22-PS117) : Foodin "4 sehat 5 sempurna" Food Recommendation App
 
 A Capstone project focuses on recommending a person's diet based on their height, weight, and activity.
@@ -21,14 +19,12 @@ A Capstone project focuses on recommending a person's diet based on their height
    - Click dropdown code and **copy** HTTPS link
 
 ```
-https://github.com/dyahajengp/client-server.git
+git clone https://github.com/dyahajengp/client-server.git
 ```
-  
-<a href="https://drive.google.com/uc?export=view&id=1XVbQ_FBapoRKKK8FZnfP6b3sJKFn3inc"><img src="https://drive.google.com/uc?export=view&id=1XVbQ_FBapoRKKK8FZnfP6b3sJKFn3inc" style="width: 230px; max-width: 100%;height: auto" title="Click to enlarge picture"/>
   
 # Test API
 You can also test our API [here](https://github.com/dyahajengp/client-server/blob/master/API-spec.md).
   
 # Depedencies
-<a href="https://drive.google.com/uc?export=view&id=1mR1rT95gA9kpBy7p2ysspJ1wlH5WnTHT"><img src="https://drive.google.com/uc?export=view&id=1mR1rT95gA9kpBy7p2ysspJ1wlH5WnTHT" style="width: 350px; max-width: 100%;height: auto" title="Click to enlarge picture" />
+<a href="https://drive.google.com/uc?export=view&id=1mR1rT95gA9kpBy7p2ysspJ1wlH5WnTHT"><img src="https://drive.google.com/uc?export=view&id=1mR1rT95gA9kpBy7p2ysspJ1wlH5WnTHT" style="width: 350px; max-width: 100%" title="Click to enlarge picture" />
   
