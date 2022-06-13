@@ -21,7 +21,17 @@ A Capstone project focuses on recommending a person's diet based on their height
 ```
 git clone https://github.com/dyahajengp/client-server.git
 ```
-  
+
+# Running on Development
+1. Build the app’s container image
+```
+docker build -t node-docker .
+```
+2. Start an app container
+```
+docker run -dp 3000:3000 node-docker
+```
+
 # Test API
 You can also test our API [here](https://github.com/dyahajengp/client-server/blob/master/API-spec.md).
   
