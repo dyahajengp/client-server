@@ -25,24 +25,48 @@ const getAllActivityHandler = async (request, h) => {
 };
 
 const addActivityByIdHandler = async (request, h) => {
-  // const dataClient = await UserSchema.findById(request.params.id);
   const pyshell = new PythonShell('./src/scripts/foodinApp.py', {mode: 'text'});
-  const {activities} = request.payload;
+
+  const activities = [];
+  activities.push({
+    activityName: request.payload.activityName,
+    duration: request.payload.duration,
+  });
+  console.log(activities);
   let message = '';
 
   try {
     const newActivities = activRepair(activities);
-    await UserSchema.updateOne(
-        {_id: request.params.id},
-        {
-          $set: {activities: newActivities},
-          $currentDate: {lastModified: true},
-        },
-    );
+    console.log(newActivities);
     const dataSave = await UserSchema.findById(request.params.id);
 
+    const storeActive = dataSave.activities;
+
+    storeActive.push(newActivities[0]);
+
+    await userSchema.replaceOne(
+        {_id: request.params.id},
+        {
+          _id: request.params.id,
+          email: dataSave.email,
+          password: dataSave.password,
+          name: dataSave.name,
+          weightCurrent: dataSave.weightCurrent,
+          height: dataSave.height,
+          gender: dataSave.gender,
+          age: dataSave.age,
+          goals: dataSave.goals,
+          activities: storeActive,
+          totalCalories: dataSave.totalCalories,
+          foodLists: dataSave.foodLists,
+        },
+    );
+
+    const dataSave2 = await UserSchema.findById(request.params.id);
+    console.log(dataSave2);
+
     const myPromise = new Promise((reject, resolve) => {
-      const dataString = JSON.stringify(dataSave);
+      const dataString = JSON.stringify(dataSave2);
       pyshell.send(dataString);
       pyshell.on('message', function(err, message) {
         if (err) reject(err);
@@ -114,11 +138,6 @@ const getCaloryByIdHandler = async (request, h) => {
 const getFoodByIdHandler = async (request, h) => {
   try {
     const dataSave = await UserSchema.findById(request.params.id);
-    // const displayFood = dataSave.foodLists.map((foodList) => ({
-    //   food: foodList.food,
-    //   vegetable: foodList.vegetable,
-    //   fruit: foodList.fruit,
-    // }));
 
     const foodLists = dataSave.foodLists;
     const displayFood = [];
@@ -130,14 +149,14 @@ const getFoodByIdHandler = async (request, h) => {
 
       if (breakfastVal == 'undefined' && lunchVal == 'undefined') {
         const breakfast = {
-          food: '',
-          vegetables: '',
-          fruit: '',
+          food: '-',
+          vegetable: '-',
+          fruit: '-',
         };
         const lunch = {
-          food: '',
-          vegetables: '',
-          fruit: '',
+          food: '-',
+          vegetable: '-',
+          fruit: '-',
         };
         displayFood.push({
           breakfast: breakfast,
@@ -148,9 +167,9 @@ const getFoodByIdHandler = async (request, h) => {
       }
       if (brunchVal == 'undefined') {
         const brunch = {
-          food: '',
-          vegetables: '',
-          fruit: '',
+          food: '-',
+          vegetable: '-',
+          fruit: '-',
         };
         displayFood.push({
           breakfast: foodLists[i].breakfast,
